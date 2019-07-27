@@ -1,84 +1,46 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
-function formatDate(date) {
-  return date.toLocaleDateString();
-}
-
-function Avatar(props) {
-  return (
-    <img
-      className="Avatar"
-      src={props.user.avatarUrl}
-      alt={props.user.name}
-    />
-  );
-}
-
-function UserInfo(props) {
-  return (
-    <div className="UserInfo">
-      <Avatar user={props.user} />
-      <div className="UserInfo-name">{props.user.name}</div>
-      <div className="UserInfo-age">{props.user.age}</div>
-    </div>
-  );
-}
-
-function Comment(props) {
-  return (
-    <div className="Comment">
-      <UserInfo user={props.author} />
-      <div className="Comment-text">{props.text}</div>
-      <div className="Comment-date">
-        {formatDate(props.date)}
-      </div>
-    </div>
-  );
-}
-
-const comment = {
-  date: new Date(),
-  text: 'I hope you enjoy learning React!',
-  author: {
-    name: 'Hello Kitty',
-    avatarUrl: 'https://placekitten.com/g/64/64',
-    age: 78,
-  },
-};
-// ReactDOM.render(
-//   <Comment
-//     date={comment.date}
-//     text={comment.text}
-//     author={comment.author}
-//   />,
-//   document.getElementById('root')
-// );
-
-class Toggle extends React.Component {
+class FlavorForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {isToggleOn: true};
+    this.state = {value: 'coconut',messageReceived: ''};
 
-    // This binding is necessary to make `this` work in the callback
-    this.handleClick = this.handleClick.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleClick() {
-    this.setState(prevState => ({
-      isToggleOn: !prevState.isToggleOn
-    }));
+  handleChange(event) {
+    this.setState({value: event.target.value});
+  }
+
+  handleSubmit(event) {
+    //alert('Your favorite flavor is: ' + this.state.value);
+    this.setState({messageReceived: this.state.value});
+    event.preventDefault();
   }
 
   render() {
+    const messageReceived = this.state.messageReceived;
     return (
-      <button onClick={this.handleClick}>
-        {this.state.isToggleOn ? 'ON' : 'OFF'}
-      </button>
+      <form onSubmit={this.handleSubmit}>
+        <label>
+          <h1>Pick your favorite flavor:</h1>
+          <select value={this.state.value} onChange={this.handleChange}>
+            <option value="grapefruit">Grapefruit</option>
+            <option value="lime">Lime</option>
+            <option value="coconut">Coconut</option>
+            <option value="mango">Mango</option>
+          </select>
+        </label>
+        <input type="submit" value="Submit" />
+        <p><textarea value={messageReceived} /></p>
+        
+      </form>
     );
   }
 }
+
 ReactDOM.render(
-  <Toggle />,
+  <FlavorForm />,
   document.getElementById('root')
 );
