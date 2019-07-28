@@ -1,4 +1,5 @@
-export class Clock extends React.Component{
+import React from 'react';
+export default class Clock extends React.Component{
   constructor(props){
     super(props);
     this.state = {date: new Date()};
@@ -24,19 +25,3 @@ export class Clock extends React.Component{
     )
   }
 }
-class MultipleClock extends React.Component{
-  render(){
-    return (
-      <div>
-        <Clock />
-        <Clock />
-        <Clock />
-        <Clock />
-      </div>
-    )
-  }
-}
-ReactDOM.render(
-  <MultipleClock />,
-  document.getElementById('root')
-);

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import clockComponent from './component/clockComponent.js'
+import Clock from './components/ClockComponent'
 class FlavorForm extends React.Component {
   constructor(props) {
     super(props);
@@ -24,7 +24,7 @@ class FlavorForm extends React.Component {
     const messageReceived = this.state.messageReceived;
     return (
       <form onSubmit={this.handleSubmit}>
-        <clockComponent/>
+        <Clock/>
         <label>
           <h1>Pick your favorite flavor:</h1>
           <select value={this.state.value} onChange={this.handleChange}>
