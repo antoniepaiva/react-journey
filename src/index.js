@@ -69,7 +69,7 @@ class FlavorForm extends React.Component {
               ]
             }
           ]}
-          defaultPageSize={10}
+          defaultPageSize={5}
           className="-striped -highlight"
         />
         <br />
