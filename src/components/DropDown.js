@@ -14,7 +14,7 @@ export class DropDown extends Component {
         let selectedValue = event.target.value;
         this.props.onSelectChange(selectedValue);
     }
-    render() {
+    render() { 
         console.log('inside component render method')
         let arrayOfData = this.props.arrayOfData;
         let options = arrayOfData.map((data) =>
