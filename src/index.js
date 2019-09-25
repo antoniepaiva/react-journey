@@ -40,6 +40,8 @@ class FlavorForm extends React.Component {
 
   render() {
     console.log('Inside render method')
+    const { data } = this.state;
+    const messageReceived = this.state.messageReceived;
     return (
        
         <div>
@@ -48,10 +50,46 @@ class FlavorForm extends React.Component {
         <DropDown arrayOfData={arrayOfData} onSelectChange={this.handleSelectChange} /> <br /><br />
 
         <p><textarea value={this.state.selectedValue} /></p>
+        <form onSubmit={this.handleSubmit}>
+        <input type="submit" value="Submit" />
+        <p><textarea value={messageReceived} /></p>
+          <div>
+        <ReactTable
+          data={data}
+          columns={[
+            {
+              Header: "Name",
+              columns: [
+                {
+                  Header: "Message ID",
+                  accessor: "id"
+                },
+                {
+                  Header: "Original Message",
+                  id: "message",
+                  accessor: d => d.message
+                }
+              ]
+            },
+            {
+              Header: "Info",
+              columns: [
+                {
+                  Header: "Time Received",
+                  accessor: "time"
+                }
+              ]
+            }
+          ]}
+          defaultPageSize={5}
+          className="-striped -highlight"
+        />
+        <br />
+        <Tips />
+        <Logo />
+      </div>      
+      </form>
 
-
-          
-       
         <br />
         <Tips />
         <Logo />
